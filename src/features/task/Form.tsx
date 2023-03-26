@@ -1,8 +1,8 @@
-import { Group, Button, Textarea, Title, CopyButton, Radio, TextInput, Stack, Grid } from '@mantine/core';
+import { Group, Button, Title, CopyButton, Radio, TextInput, Stack, Grid } from '@mantine/core';
 import { TaskFormProvider, useTaskForm } from '@/features/task/FormContext';
 import { isNotEmpty } from '@mantine/form';
 import { assistantPrompt, supportedNamingConventions } from '@/features/task/Util';
-import type { ResponseProps, SuccessResponseProps, ErrorResponseProps } from '@/pages/api/chat';
+import type { ResponseProps, SuccessResponseProps } from '@/pages/api/chat';
 
 export const TaskForm = (props: { csrfToken: string}) => {
   const form = useTaskForm({
