@@ -8,7 +8,8 @@ export const TaskForm = (props: { csrfToken: string}) => {
   const form = useTaskForm({
     initialValues: {
       loading: false,
-      purpose: '',
+      type: 'variable',
+      purpose: '素数かどうか判定する',
       candidates: ['isPrime', 'checkPrime', 'primeChecker', 'validatePrime'],
       namingConvention: 'camel case'
     },
@@ -20,8 +21,6 @@ export const TaskForm = (props: { csrfToken: string}) => {
   const handleSubmit = async () => {
     form.setValues({ loading: true });
     const systemPrompt = `
-    As a software engineer, please suggest 10 appropriate variable or function names in ${form.values.namingConvention} format that would be suitable for describing the processing overview.
-    Your suggestions must be in a single line format, separated by commas.
     `;
     const reqResponse = await fetch('/api/chat/', {
       method: 'POST',
@@ -48,9 +47,15 @@ export const TaskForm = (props: { csrfToken: string}) => {
   return (
     <TaskFormProvider form={form}>
       <form onSubmit={form.onSubmit(() => handleSubmit())}>
+        <Radio.Group label="命名したい種類" {...form.getInputProps('type')}>
+          <Group mt="xs">
+            <Radio value='variable' label='変数名' />
+            <Radio value='function' label='関数名' />
+          </Group>
+        </Radio.Group>
         <TextInput label='変数や関数にする処理の概要を記述してください' withAsterisk {...form.getInputProps('purpose')} placeholder='素数かどうか判定する関数'/>
         <Radio.Group label="命名規則" {...form.getInputProps('namingConvention')}>
-          <Stack>
+          <Stack mt="xs">
             {supportedNamingConventions.map((nc, index) => (
               <Radio key={index} value={nc.name} label={nc.label} />
             ))}
