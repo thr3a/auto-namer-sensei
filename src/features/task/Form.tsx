@@ -20,8 +20,7 @@ export const TaskForm = (props: { csrfToken: string}) => {
 
   const handleSubmit = async () => {
     form.setValues({ loading: true });
-    const systemPrompt = `
-    `;
+    const systemPrompt = 'I want you to act as a software engineer.';
     const reqResponse = await fetch('/api/chat/', {
       method: 'POST',
       headers: {
@@ -36,7 +35,6 @@ export const TaskForm = (props: { csrfToken: string}) => {
     const json = await reqResponse.json() as ResponseProps;
     if (json.status === 'ok') {
       const response = json as SuccessResponseProps;
-      debugger;
       const candidates = response.result.split(',');
       form.setValues({candidates: candidates, loading: false });
     } else {

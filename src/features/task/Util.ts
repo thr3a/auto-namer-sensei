@@ -2,7 +2,7 @@ import { TaskProps } from '@/features/task/FormContext';
 
 export const assistantPrompt = (value: TaskProps): string => {
   return `
-As an IT expert, please suggest 10 appropriate ${value.type} names in ${value.namingConvention} format that would be suitable for describing the processing overview.
+Please suggest 10 appropriate ${value.type} names in ${value.namingConvention} format that are suitable for the following overview.
 Your suggestions must be in a single line format, separated by commas.
 overview: ${value.purpose}
 suggestions:

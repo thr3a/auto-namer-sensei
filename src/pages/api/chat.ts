@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const chat = new ChatOpenAI({
       openAIApiKey: process.env.OPENAI_APIKEY,
       modelName: 'gpt-3.5-turbo',
-      temperature: 0.6,
+      temperature: 0,
     });
 
     const response = await chat.call([
