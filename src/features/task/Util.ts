@@ -5,7 +5,7 @@ export const assistantPrompt = (value: TaskProps): string => {
 As an IT expert, please suggest 10 appropriate ${value.type} names in ${value.namingConvention} format that would be suitable for describing the processing overview.
 Your suggestions must be in a single line format, separated by commas.
 overview: ${value.purpose}
-suggestions: <comma_separated_list_of_suggestions>
+suggestions:
   `.replace(/^\s+|\s+$/g, '');
 };
 
