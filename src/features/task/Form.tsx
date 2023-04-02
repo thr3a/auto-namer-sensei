@@ -9,7 +9,7 @@ export const TaskForm = (props: { csrfToken: string}) => {
     initialValues: {
       loading: false,
       type: 'variable',
-      purpose: '素数かどうか判定する',
+      purpose: '',
       candidates: ['isPrime', 'checkPrime', 'primeChecker', 'validatePrime'],
       namingConvention: 'camel case'
     },
@@ -47,13 +47,14 @@ export const TaskForm = (props: { csrfToken: string}) => {
   return (
     <TaskFormProvider form={form}>
       <form onSubmit={form.onSubmit(() => handleSubmit())}>
-        <Radio.Group label="命名したい種類" {...form.getInputProps('type')}>
+        <Radio.Group label="名前の種類" {...form.getInputProps('type')}>
           <Group mt="xs">
             <Radio value='variable' label='変数名' />
             <Radio value='function' label='関数名' />
+            <Radio value='branch' label='ブランチ名' />
           </Group>
         </Radio.Group>
-        <TextInput label='変数や関数にする処理の概要を記述してください' withAsterisk {...form.getInputProps('purpose')} placeholder='素数かどうか判定する関数'/>
+        <TextInput label='処理の概要を記述してください' withAsterisk {...form.getInputProps('purpose')} placeholder='素数かどうか判定する関数'/>
         <Radio.Group label="命名規則" {...form.getInputProps('namingConvention')}>
           <Stack mt="xs">
             {supportedNamingConventions.map((nc, index) => (
@@ -79,7 +80,7 @@ export const TaskForm = (props: { csrfToken: string}) => {
             <Grid.Col span={4}>
               <CopyButton value={candidate.trim()}>
                 {({ copied, copy }) => (
-                  <Button color={copied ? 'teal' : 'blue'} onClick={copy} size="xs">
+                  <Button color={copied ? 'teal' : 'blue'} onClick={copy} size="xs" variant="light">
                     {copied ? 'コピーしました！' : 'クリップボードにコピー'}
                   </Button>
                 )}

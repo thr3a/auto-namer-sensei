@@ -14,7 +14,7 @@ export default function App(props: AppProps) {
       <Head>
         <title>命名先生</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
-        <meta name="description" content="変数や関数の処理の概要を伝えると、AI先生が自動で命名してくれます。" />
+        <meta name="description" content="概要を伝えるとAI先生が自動で変数名や関数名を命名してくれます。" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MantineProvider
